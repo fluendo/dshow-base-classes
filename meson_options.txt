@@ -1,0 +1,4 @@
+option('charset', type: 'combo',
+  choices: ['ascii', 'unicode', 'mbcs'],
+  value: 'ascii',
+  description: 'Windows API and CRT character set')
