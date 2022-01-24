@@ -1,0 +1,30 @@
+name: Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        arch:
+          - x64
+          - x86
+        charset:
+          - ascii
+          - unicode
+          - mbcs
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
+      - name: Install meson
+        run: pip install --upgrade meson ninja
+      - name: Build project
+        run: |
+          meson -Dcharset=${{ matrix.charset }} builddir
+          ninja -C builddir
