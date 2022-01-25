@@ -1,0 +1,29 @@
+From f757e0d81e17ab27c0e47c8f4af0fdbc77f3ff40 Mon Sep 17 00:00:00 2001
+From: Loic Le Page <llepage@fluendo.com>
+Date: Tue, 25 Jan 2022 19:22:31 +0100
+Subject: [PATCH 4/5] Activate gst-plugins-bad/sys/dshow plugins build
+
+---
+ subprojects/gst-plugins-bad/sys/meson.build | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/subprojects/gst-plugins-bad/sys/meson.build b/subprojects/gst-plugins-bad/sys/meson.build
+index f635077374..5b23966e2a 100644
+--- a/subprojects/gst-plugins-bad/sys/meson.build
++++ b/subprojects/gst-plugins-bad/sys/meson.build
+@@ -6,9 +6,9 @@ subdir('d3d11')
+ subdir('d3dvideosink')
+ subdir('decklink')
+ subdir('directsound')
+-#subdir('dshowdecwrapper')
+-#subdir('dshowsrcwrapper')
+-#subdir('dshowvideosink')
++subdir('dshowdecwrapper')
++subdir('dshowsrcwrapper')
++subdir('dshowvideosink')
+ subdir('dvb')
+ subdir('fbdev')
+ subdir('ipcpipeline')
+-- 
+2.34.1.windows.1
+

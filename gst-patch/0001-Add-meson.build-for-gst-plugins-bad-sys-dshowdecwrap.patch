@@ -1,0 +1,56 @@
+From 15bba71a4666f02a0bfb2658b0c567da2d7a811c Mon Sep 17 00:00:00 2001
+From: Loic Le Page <llepage@fluendo.com>
+Date: Tue, 25 Jan 2022 19:21:20 +0100
+Subject: [PATCH 1/5] Add meson.build for gst-plugins-bad/sys/dshowdecwrapper
+
+---
+ .../sys/dshowdecwrapper/meson.build           | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+ create mode 100644 subprojects/gst-plugins-bad/sys/dshowdecwrapper/meson.build
+
+diff --git a/subprojects/gst-plugins-bad/sys/dshowdecwrapper/meson.build b/subprojects/gst-plugins-bad/sys/dshowdecwrapper/meson.build
+new file mode 100644
+index 0000000000..0369802d53
+--- /dev/null
++++ b/subprojects/gst-plugins-bad/sys/dshowdecwrapper/meson.build
+@@ -0,0 +1,37 @@
++if host_system != 'windows'
++  subdir_done()
++endif
++
++dshowdecwrapper_sources = [
++  'gstdshowaudiodec.cpp',
++  'gstdshowdecwrapper.cpp',
++  'gstdshowfakesrc.cpp',
++  'gstdshowutil.cpp',
++  'gstdshowvideodec.cpp'
++]
++
++cxx = meson.get_compiler('cpp')
++
++strmbase_dep = dependency('strmbase', default_options: ['charset=mbcs'])
++winmm_dep = cxx.find_library('winmm')
++dmoguids_dep = cxx.find_library('dmoguids')
++wmcodecdspuuid_dep = cxx.find_library('wmcodecdspuuid')
++
++gstdshowdecwrapper = library('gstdshowdecwrapper',
++  dshowdecwrapper_sources,
++  cpp_args: gst_plugins_bad_args,
++  include_directories: [configinc],
++  dependencies: [
++    gstaudio_dep,
++    gstvideo_dep,
++    strmbase_dep,
++    winmm_dep,
++    dmoguids_dep,
++    wmcodecdspuuid_dep
++  ],
++  install: true,
++  install_dir: plugins_install_dir,
++  override_options: ['cpp_std=none'])
++
++pkgconfig.generate(gstdshowdecwrapper, install_dir: plugins_pkgconfig_install_dir)
++plugins += [gstdshowdecwrapper]
+-- 
+2.34.1.windows.1
+

@@ -26,3 +26,11 @@ To build the *strmbase* library, just call:
 meson builddir
 ninja -C builddir
 ```
+
+If you need to integrate this subproject with an old version of GStreamer
+source code that would not provide it, you can use the patch files in
+*gst-patch* subfolder. Just go to your GStreamer local git clone and run:
+```
+git apply /path/to/dshow-base-classes/gst-patch/*
+```
+before configuring meson.

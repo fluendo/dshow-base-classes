@@ -1,0 +1,26 @@
+From 2b3a16e61250eb4f7e95f3dd8fa8fb3721e398d9 Mon Sep 17 00:00:00 2001
+From: Loic Le Page <llepage@fluendo.com>
+Date: Tue, 25 Jan 2022 19:29:56 +0100
+Subject: [PATCH 5/5] Add meson wrap for strmbase
+
+---
+ subprojects/strmbase.wrap | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 subprojects/strmbase.wrap
+
+diff --git a/subprojects/strmbase.wrap b/subprojects/strmbase.wrap
+new file mode 100644
+index 0000000000..4f773d094a
+--- /dev/null
++++ b/subprojects/strmbase.wrap
+@@ -0,0 +1,7 @@
++[wrap-git]
++directory = dshow-base-classes
++url = git@github.com:fluendo/dshow-base-classes.git
++revision = master
++
++[provide]
++strmbase = strmbase_dep
+-- 
+2.34.1.windows.1
+
